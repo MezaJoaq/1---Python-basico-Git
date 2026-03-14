@@ -28,22 +28,25 @@ while attempts > 0:
 
     if "_" not in progress:
         print("¡Ganaste!")
-    break
+        break
 
     print(f"Intentos restantes: {attempts}")
     print(f"Letras usadas: {', '.join(guessed)}")
 
     letter = input("Ingresá una letra: ")
-
-    if letter in guessed:
-        print("Ya usaste esa letra.")
-    elif letter in word:
-        guessed.append(letter)
-        print("¡Bien! Esa letra está en la palabra.")
+    # Comprueba el rango y si el caracter ingresa es una letra
+    if len(letter) >= 2 or not letter.isalpha():
+        print("Entrada no valida")
     else:
-        guessed.append(letter)
-        attempts -= 1
-        print("Esa letra no está en la palabra.")
-        print()
+        if letter in guessed:
+            print("Ya usaste esa letra.")
+        elif letter in word:
+            guessed.append(letter)
+            print("¡Bien! Esa letra está en la palabra.")
+        else:
+            guessed.append(letter)
+            attempts -= 1
+            print("Esa letra no está en la palabra.")
+            print()
 else:
     print(f"¡Perdiste! La palabra era: {word}")
