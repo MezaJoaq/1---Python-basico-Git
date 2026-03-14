@@ -1,21 +1,41 @@
 import random
-words = [
-    "python",
-    "programa",
-    "variable",
-    "funcion",
-    "bucle",
-    "cadena",
-    "entero",
-    "lista",
-]
-word = random.choice(words)
+categoria = {
+    "Conceptos" : ["python","programa"],
+    "Estructuras" : ["funcion","bucle"],
+    "Datos" : ["cadena","entero","lista"],
+    "Sintaxis" : ["variable"]
+}
+menu = """ 
+//////////////////////////////////////
+    ¡BIENVENIDO AL AHORCADO!
+//////////////////////////////////////
+Seleccione una categoria
+    1- Conceptos
+    2- Estructuras
+    3- Datos
+    4- Sintaxis
+--------------------------------------
+Ingrese su opcion (1-4):
+"""
+#Menu de opciones de categoria, se elige un valor aleatorio 
+opcion = input(menu)
+match opcion:
+    case "1":
+        word = (categoria["Conceptos"][random.randint(0,1)])
+    case "2":
+        word = (categoria["Estructuras"][random.randint(0,1)])
+    case "3":
+        word = (categoria["Datos"][random.randint(0,2)])
+    case "4":
+        word = (categoria["Sintaxis"][0])
+    case _:            #Si se ingresa un caracter distinto se asigna la categoria conceptos
+        print('Se asigno la categoria Conceptos')
+        word = (categoria["Conceptos"][random.randint(0,1)])
+
 guessed = []
 attempts = 6
 score = 0
 
-print("¡Bienvenido al Ahorcado!")
-print()
 
 while attempts > 0:
     # Mostrar progreso: letras adivinadas y guiones para las que faltan
